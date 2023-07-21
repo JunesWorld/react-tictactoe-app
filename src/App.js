@@ -4,16 +4,31 @@ import ExpenseForm from './components/ExpenseForm';
 import ExpenseList from './components/ExpenseList';
 
 class App extends Component {
-  // ExpenseItem
-  initialExpenses = [
-    { id: 1, charge: "렌트비", amount: 1600},
-    { id: 2, charge: "교통비", amount: 400},
-    { id: 3, charge: "식비", amount: 1200}
-  ]
+
+  // State 생성
+  constructor(props) {
+    super(props);
+    this.state = {
+      expenses: [
+        { id: 1, charge: "렌트비", amount: 1600},
+        { id: 2, charge: "교통비", amount: 400},
+        { id: 3, charge: "식비", amount: 1200}
+      ]
+    }
+  }
+
+  // // ExpenseItem
+  // initialExpenses = [
+  //   { id: 1, charge: "렌트비", amount: 1600},
+  //   { id: 2, charge: "교통비", amount: 400},
+  //   { id: 3, charge: "식비", amount: 1200}
+  // ]
 
   handleDelete = (id) => {
-    const newExpense = this.initialExpenses.filter(expense => expense.id !== id)
-    console.log(newExpense)
+    const newExpenses = this.state.expenses.filter(expense => expense.id !== id)
+    console.log(newExpenses)
+    // state update!
+    this.setState({ expenses: newExpenses });
   }
 
   render() {
@@ -31,7 +46,7 @@ class App extends Component {
           {/* Props 자녀 컴포넌트로 전달 */}
           {/* List에서도 내려줘야함 */}
           <ExpenseList 
-            initialExpenses={this.initialExpenses}
+            initialExpenses={this.state.expenses}
             handleDelete = {this.handleDelete} />
         </div>
 
