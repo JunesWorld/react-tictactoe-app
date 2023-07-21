@@ -15,7 +15,8 @@ export class ExpenseList extends Component {
             return (
               <ExpenseItem
                 expense={expense}
-                key={expense.id} />
+                key={expense.id}
+                handleDelete={this.props.handleDelete} />
             )
           })}
         </ul>
