@@ -45,3 +45,32 @@ React에서 데이터가 변할 때 화면을 다시 렌더링 해주기 위해�
 
 React Component 객체가 생성될 때 props 속성을 초기화하기 위해 부모 컴포넌트에게 props를 전달
 - 생성자 내부에서도 this.props를 정상적으로 사용할 수 있도록 보장하기 위함
+
+## State VS Props
+
+Props
+- A부모 컴포넌트
+  - state = {a:"a"}
+- <B컴포넌트 aProps={this.state.a} />
+ - B 자식 컴포넌트
+   - a state 필요
+   - this.props.aProps
+   ```js
+   <ChatMessages
+      message={message}
+      currentMember={member}
+   />
+   ```  
+State 
+- A 컴포넌트
+  ```js
+  state = {a:"a"}
+  this.state.a
+  ```
+  ```js
+  state = {
+    message: '',
+    attachFile: undefined,
+    openMenu: false,
+  };
+  ```
