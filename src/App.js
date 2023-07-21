@@ -1,21 +1,32 @@
-import { Component } from "react";
+import { useState } from "react";
 import "./App.css";
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseList from './components/ExpenseList';
 
-class App extends Component {
+const App = () => {
 
-  // State 생성
-  constructor(props) {
-    super(props);
-    this.state = {
-      expenses: [
-        { id: 1, charge: "렌트비", amount: 1600},
-        { id: 2, charge: "교통비", amount: 400},
-        { id: 3, charge: "식비", amount: 1200}
-      ]
-    }
-  }
+  // const [value, setValue] = useState("");
+  // value : 변수 이름 getter
+  // setValue : state를 정하는 함수 setter
+  // useState : value, setValue를 리턴하고 초기 State 값을 정하는 Hook
+  // this.state 제거
+  const [expenses, setExpenses] = useState([
+    { id: 1, charge: "렌트비", amount: 1600},
+    { id: 2, charge: "교통비", amount: 400},
+    { id: 3, charge: "식비", amount: 1200}
+  ])
+
+  // // State 생성
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     expenses: [
+  //       { id: 1, charge: "렌트비", amount: 1600},
+  //       { id: 2, charge: "교통비", amount: 400},
+  //       { id: 3, charge: "식비", amount: 1200}
+  //     ]
+  //   }
+  // }
 
   // // ExpenseItem
   // initialExpenses = [
@@ -24,14 +35,14 @@ class App extends Component {
   //   { id: 3, charge: "식비", amount: 1200}
   // ]
 
-  handleDelete = (id) => {
-    const newExpenses = this.state.expenses.filter(expense => expense.id !== id)
+  const handleDelete = (id) => {
+    const newExpenses = expenses.filter(expense => expense.id !== id)
     console.log(newExpenses)
     // state update!
-    this.setState({ expenses: newExpenses });
+    setExpenses(newExpenses)
+    // this.setState({ expenses: newExpenses });
   }
 
-  render() {
     return(
       <main className="main-container">
         <h1>예산 계산기</h1>
@@ -46,8 +57,8 @@ class App extends Component {
           {/* Props 자녀 컴포넌트로 전달 */}
           {/* List에서도 내려줘야함 */}
           <ExpenseList 
-            initialExpenses={this.state.expenses}
-            handleDelete = {this.handleDelete} />
+            initialExpenses={expenses}
+            handleDelete = {handleDelete} />
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'end', marginTop: '1rem' }}>
@@ -60,6 +71,6 @@ class App extends Component {
       </main>
     )
   }
-}
+
 
 export default App;
