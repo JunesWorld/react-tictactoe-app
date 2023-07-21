@@ -74,3 +74,10 @@ State
     openMenu: false,
   };
   ```
+
+  ## React Hooks(Functional Component)
+
+  ReactConf 2018에서 발표된, 클래스 없이 state를 사용할 수 있는 기능.  
+  [React Component]  
+  |- Class Component : 더 많은 기능 | 더 긴 코드 양 | 더 복잡한 코드 | 더딘 성능  
+  |- Functional Component : 더 적은 기능 | 짧은 코드 양 | 심플한 코드 | 빠른 성능
