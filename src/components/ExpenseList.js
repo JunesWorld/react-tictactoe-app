@@ -5,6 +5,8 @@ import { MdDelete } from 'react-icons/md'
 
 export class ExpenseList extends Component {
   render() {
+    // 부모 컴포넌트(App.js)에서 Props 받아오기
+    console.log(this.props.initialExpenses)
     return (
       <>
         <ul className='list'>
