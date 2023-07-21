@@ -81,3 +81,13 @@ State
   [React Component]  
   |- Class Component : 더 많은 기능 | 더 긴 코드 양 | 더 복잡한 코드 | 더딘 성능  
   |- Functional Component : 더 적은 기능 | 짧은 코드 양 | 심플한 코드 | 빠른 성능
+
+- HOC란 무엇인가?
+  - Higher Order Component
+  - 컴포넌트를 인자로 받아 새로운 리액트 컴포넌트를 리턴하는 함수
+- 너무나 많은 HOC를 사용하게 되면 Wrapper가 너무 많아지게 됩니다. 그걸 Hooks에서는 어떻게 처리하나요?
+  - React Hooks에서는 HOC 대신에 따로 Custom Hooks를 이용해서 컴포넌트를 만들어서 처리해줍니다. 그로인해 Wrapper가 많아지는 일을 방지
+- 생명주기를 위해서 Hooks에서는 어떠한 api를 사용하나요?
+  - ComponentDidMount, ComponentDidUpdate, ComponentWillUnmount 모두를 Hooks에서는 useEffect를 이용해서 처리
+- Hooks에서 state를 업데이트 해주려면 어떻게 해야하나요?
+  - state를 정의해줄 때 `const[ name, setName ] = useState(""); 이런식으로 해줍니다. 여기서 setName을 이용해서 state를 업데이트 시켜 줄 수 있습니다.
