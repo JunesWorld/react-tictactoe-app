@@ -91,3 +91,7 @@ State
   - ComponentDidMount, ComponentDidUpdate, ComponentWillUnmount 모두를 Hooks에서는 useEffect를 이용해서 처리
 - Hooks에서 state를 업데이트 해주려면 어떻게 해야하나요?
   - state를 정의해줄 때 `const[ name, setName ] = useState(""); 이런식으로 해줍니다. 여기서 setName을 이용해서 state를 업데이트 시켜 줄 수 있습니다.
+- `const [value, setValue] = useState("");`
+  - value : 변수 이름 getter
+  - setValue : State를 정하는 함수 setter
+  - useState : value, setValue를 리턴하고 초기 State 값을 정하는 Hook
