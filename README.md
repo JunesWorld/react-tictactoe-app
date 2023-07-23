@@ -180,3 +180,22 @@ const arr2 = [...arr1].reverse();
 console.log(arr1) // [1, 2, 3]
 console.log(arr2) // [3, 2, 1]
 ```
+
+## 배포하기
+
+gh-pages 모듈 설치
+```bash
+npm i gh-pages --save-dev
+```
+
+package.json
+```js
+"homepage": "https://JuensWorld.github.io/react-tictactoe-app",
+```
+```js
+[scripts]
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build",
+```
+
+`npm run deploy` 후 homepage 주소로 접근~!
