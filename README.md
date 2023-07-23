@@ -139,3 +139,43 @@ State 생성하기
 - 참조 타입에서는 값을 바꿨을 때 Call Stack 주소 값은 같은데 Heep 메모리 값만 바꿔주기에 불변성을 유지할 수 없음으로 아예 새로운 배열을 반환하는 메소드 사용
 - spread operator, map, filter, slice, reduce
 - 원본 데이터를 변경하는 메소드 = splice, push
+
+## 전개 연산자
+
+배열 조합
+```js
+const arr1 = [1, 2, 3]
+const arr2 = [4, 5, 6]
+const arr3 = [7, 8, 9]
+const arrWrap = [...arr1, ...arr2, ...arr3]
+```
+
+객체 조합
+- 객체 자체가 아닌 각각의 값이 할당 됨
+```js
+const obj1 = {
+  a: 'A',
+  b: 'B'
+};
+const obj2 = {
+  c: 'C',
+  d: 'D'
+};
+const objWrap = {...obj1, ...obj2};
+console.log(objWrap)
+{
+  a: 'A',
+  b: 'B',
+  c: 'C',
+  d: 'D'
+}
+```
+
+기존 배열을 보존
+```js
+const arr1 = [1, 2, 3]
+const arr2 = [...arr1].reverse();
+
+console.log(arr1) // [1, 2, 3]
+console.log(arr2) // [3, 2, 1]
+```
