@@ -24,6 +24,10 @@ const App = () => {
     { id: 3, charge: "식비", amount: 1200}
   ])
 
+  const clearItems = () => {
+    setExpenses([])
+  }
+
   // 지출 목록 추가!
   // ExpenseForm => onChange
   const handleCharge = (e) => {
@@ -133,9 +137,10 @@ const App = () => {
           {/* Props 자녀 컴포넌트로 전달 */}
           {/* List에서도 내려줘야함 */}
           <ExpenseList 
-            initialExpenses={expenses}
+            expenses = {expenses}
             handleDelete = {handleDelete}
             handleEdit = {handleEdit}
+            clearItems = {clearItems}
           />
         </div>
 
