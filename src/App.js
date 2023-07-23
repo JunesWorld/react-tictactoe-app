@@ -5,6 +5,10 @@ import ExpenseList from './components/ExpenseList';
 
 const App = () => {
 
+  // 지출 목록 추가!
+  const [charge, setCharge] = useState("");
+  const [amount, setAmount] = useState(0);
+
   // const [value, setValue] = useState("");
   // value : 변수 이름 getter
   // setValue : state를 정하는 함수 setter
@@ -16,6 +20,32 @@ const App = () => {
     { id: 3, charge: "식비", amount: 1200}
   ])
 
+  // 지출 목록 추가!
+  // ExpenseForm => onChange
+  const handleCharge = (e) => {
+    console.log(e.target.value)
+    setCharge(e.target.value)
+  }
+
+  const handleAmount = (e) => {
+    setAmount(e.target.valueAsNumber)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (charge !== "" && amount > 0) {
+      const newExpense = {id: crypto.randomUUID(), charge, amount}
+
+      // 불변성을 지켜주기 위해서 새로운 expense를 생성
+      const newExpenses = [...expenses, newExpense];
+      setExpenses(newExpenses);
+      setCharge("");
+      setAmount(0);
+      
+    }else {
+      console.log('error')
+    }
+  }
   // // State 생성
   // constructor(props) {
   //   super(props);
@@ -49,7 +79,14 @@ const App = () => {
 
         <div style={{ width: '100%', backgroundColor: 'white', padding: '1rem' }}>
           {/* Expense Form */}
-          <ExpenseForm />
+          {/* ExpenseForm에서 가져올 수 있게 state 내려주기 */}
+          <ExpenseForm
+            handleCharge = {handleCharge}
+            charge = {charge}
+            handleAmount = {handleAmount}
+            amount = {amount}
+            handleSubmit = {handleSubmit}
+          />
         </div>
 
         <div style={{ width: '100%', backgroundColor: 'white', padding: '1rem' }}>
