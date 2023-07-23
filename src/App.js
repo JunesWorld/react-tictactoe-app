@@ -10,6 +10,8 @@ const App = () => {
   const [charge, setCharge] = useState("");
   const [amount, setAmount] = useState(0);
   const [alert, setAlert] = useState({ show: false });
+  const [id, setId] = useState('');
+  const [edit, setEdit] = useState(false);
 
   // const [value, setValue] = useState("");
   // value : 변수 이름 getter
@@ -36,15 +38,24 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (charge !== "" && amount > 0) {
-      const newExpense = {id: crypto.randomUUID(), charge, amount}
+      if (edit) {
+        const newExpenses = expenses.map(item => {
+          // Edit 시 id 같으면 override
+          return item.id === id ? {...item, charge, amount} : item
+        })
 
-      // 불변성을 지켜주기 위해서 새로운 expense를 생성
-      const newExpenses = [...expenses, newExpense];
-      setExpenses(newExpenses);
+        setExpenses(newExpenses)
+        setEdit(false)
+        handleAlert({ type: 'success', text: "아이템이 수정되었습니다."})
+      }else {
+        const newExpense = {id: crypto.randomUUID(), charge, amount}
+        // 불변성을 지켜주기 위해서 새로운 expense를 생성
+        const newExpenses = [...expenses, newExpense];
+        setExpenses(newExpenses);
+        handleAlert({ type: "success", text: "아이템이 생섣되었습니다."})
+      }
       setCharge("");
       setAmount(0);
-      handleAlert({ type: "success", text: "아이템이 생섣되었습니다."})
-      
     }else {
       console.log('error');
       handleAlert({
@@ -88,6 +99,16 @@ const App = () => {
     }, 7000)
   }
 
+  // List & Item 컴포넌트에 내려주기
+  const handleEdit = id => {
+    const expense = expenses.find(item => item.id === id);
+    const { charge, amount } = expense;
+    setId(id);
+    setCharge(charge);
+    setAmount(amount);
+    setEdit(true); 
+  }
+
     return(
       <main className="main-container">
         {/* alert.show가 true 일 때 Alert 컴포넌트를 보여주고 아닐 때는 null */}
@@ -103,6 +124,7 @@ const App = () => {
             handleAmount = {handleAmount}
             amount = {amount}
             handleSubmit = {handleSubmit}
+            edit = {edit}
           />
         </div>
 
@@ -112,7 +134,9 @@ const App = () => {
           {/* List에서도 내려줘야함 */}
           <ExpenseList 
             initialExpenses={expenses}
-            handleDelete = {handleDelete} />
+            handleDelete = {handleDelete}
+            handleEdit = {handleEdit}
+          />
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'end', marginTop: '1rem' }}>

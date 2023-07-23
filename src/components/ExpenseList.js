@@ -3,7 +3,7 @@ import './ExpenseList.css'
 import ExpenseItem from './ExpenseItem'
 import { MdDelete } from 'react-icons/md'
 
-const ExpenseList = ({ handleDelete, initialExpenses }) => {
+const ExpenseList = ({ handleDelete, initialExpenses, handleEdit }) => {
     // 부모 컴포넌트(App.js)에서 Props 받아오기
     // console.log(props.initialExpenses)
     return (
@@ -15,7 +15,9 @@ const ExpenseList = ({ handleDelete, initialExpenses }) => {
               <ExpenseItem
                 expense={expense}
                 key={expense.id}
-                handleDelete={handleDelete} />
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+              />
             )
           })}
         </ul>
