@@ -104,3 +104,38 @@ State
 const week = ['monday', 'tuesday', 'wednesday', 'thurseday', 'friday'];
 const [day1, day2, day3, day4, day5] = week;
 ```
+
+## 지출 목록 추가 기능 생성하기
+
+State 생성하기
+
+- 입력할 때 값을 기억해줄 State가 필요합니다.
+  ```js
+  const [charge, setCharge] = useState("");
+  const [amount, setAmount] = useState(0);
+  ```
+- Input 요소에 타이핑을 할 때 각 해당 state에 값을 업데이트해줘야 합니다.
+
+## 자바스크립트 타입을 통한 불변성 의미 살펴보기
+
+원시 타입 = 불변성
+- Boolean, String, Number, null, undefined, Symbol
+- 고정된 크기로 Call Stack 메모리에 저장, 실제로 데이터가 변수에 할당
+- A가 있다면 B에 새로 생성!!
+
+참조 타입 = 가변성
+- Object, Array
+- 데이터 크기가 정해지지 않고 Call Stack 메모리에 저장
+- 데이터 값이 Heep에 저장되며 변수에 Heep 메모리의 주소값이 할당
+- 실제로 변경!!
+
+기본적으로 Javascript는 원시 타입에 대한 참조 및 값을 저장하기 위해 Call Stack 메모리 공간을 사용하지만 참조 타입의 경우 Heep이라는 별도의 메모리 공간을 사용합니다. 이경우 Call Stack은 개체 및 배열 값이 아닌 메모리에만 Heep 메모리 참조 ID를 값으로 저장합니다.
+
+불변성을 지켜야 하는 이유?
+- 참조 타입에서 객체나 배열의 값이 변할 때 원본 데이터가 변경되기에 이 원본 데이터를 잠조하고 있는 다른 객체에서 예상치 못한 오류가 발생할 수 있어 프로그램의 복잡도가 올라간다.
+- 리액트에서 화면을 업데이트할 때 불변성을 지켜서 값을 이전 값과 비교해서 변경된 사항을 확인한 후 업데이트하기 때문에
+
+지키는 방법?
+- 참조 타입에서는 값을 바꿨을 때 Call Stack 주소 값은 같은데 Heep 메모리 값만 바꿔주기에 불변성을 유지할 수 없음으로 아예 새로운 배열을 반환하는 메소드 사용
+- spread operator, map, filter, slice, reduce
+- 원본 데이터를 변경하는 메소드 = splice, push
