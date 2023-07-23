@@ -95,3 +95,12 @@ State
   - value : 변수 이름 getter
   - setValue : State를 정하는 함수 setter
   - useState : value, setValue를 리턴하고 초기 State 값을 정하는 Hook
+
+## 구조 분해 할당(Destructuring)
+
+배열이나 객체의 속성을 해체하여 그 값을 개별 변수에 담을 수 있게 하는 Javascript 표현식
+
+```js
+const week = ['monday', 'tuesday', 'wednesday', 'thurseday', 'friday'];
+const [day1, day2, day3, day4, day5] = week;
+```
