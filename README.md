@@ -15,6 +15,7 @@ App Component
 
 ES7 + React!
 - rce + tab
+- rafce = 함수형 컴포넌트
 
 ## React Icon
 
